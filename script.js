@@ -21,10 +21,6 @@ var newUserPrompt = function() {
 	document.write("<form id=\"form\" onsubmit=\"return false;\">First name: <input type=\"text\" id=\"userInput\"><br><input type=\"submit\" onclick=\"userName()\"></form>");
 };
 
-var somethingElse = function() {
-	document.write("yeah!");
-}
-
 function userName() {
 	var input = document.getElementById("userInput");
 	//document.body.innerHTML = "";
