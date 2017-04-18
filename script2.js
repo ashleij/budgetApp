@@ -5,20 +5,25 @@ if (localStorage.getItem("$userName") != null) {
 	document.write("<table><tr><th>Category</th><th>Budgeted</th><th>Activity</th><th>Available</th></tr>");
 	
 	for (i = 0; i <= storedNames.length - 1; i++) {
-		document.write("<tr><td>" + storedNames[i] + "</td><td><input id=\"blah\" placeholder=\"" + localStorage.getItem("$line"+(i+1)+ "index0") + "\" type=\"text\" class=\"boxes\" style=\"width: 45px;height: 18px;\"></td><td>" + localStorage.getItem("$line"+(i+1)+ "index1") + "</td><td>" + localStorage.getItem("$line"+(i+1)+ "index2") + "</td></tr>");
+		document.write("<tr><td><input id=\"blah2\" class=\"boxes2\" placeholder=\"" + localStorage.getItem("$category"+(i+1)) + "\"></td><td><input id=\"blah\" placeholder=\"" + localStorage.getItem("$line"+(i+1)+ "index0") + "\" type=\"text\" class=\"boxes\" style=\"width: 45px;height: 18px;\"></td><td>" + localStorage.getItem("$line"+(i+1)+ "index1") + "</td><td>" + localStorage.getItem("$line"+(i+1)+ "index2") + "</td></tr>");
 	}	
 	
 	for(var i = 0; i < storedNames.length; i++) {
-		document.getElementsByClassName('boxes')[i].id = "category"+(i+1);
+		document.getElementsByClassName('boxes')[i].id = "budgeted"+(i+1);
 	}
 
+	for(var i = 0; i < storedNames.length; i++) {
+		document.getElementsByClassName('boxes2')[i].id = "category"+(i+1);
+	}
 	
+
+
 	for (var i = 0; i < storedNames.length; i++) {
-		var grabCat = document.getElementById('category'+(i+1));
-		grabCat.addEventListener('change', function(event) {
+		var grabBudg = document.getElementById('budgeted'+(i+1));
+		grabBudg.addEventListener('change', function(event) {
 			for (var j = 0; j < storedNames.length; j++) {
-				if (document.getElementById('category'+(j+1)).value != "") {
-					localStorage.setItem(("$line"+(j+1)+"index0"), document.getElementById('category'+(j+1)).value);
+				if (document.getElementById('budgeted'+(j+1)).value != "") {
+					localStorage.setItem(("$line"+(j+1)+"index0"), document.getElementById('budgeted'+(j+1)).value);
 					localStorage.setItem("$line"+(j+1)+"index2", localStorage.getItem("$line"+(j+1)+"index0")-localStorage.getItem("$line"+(j+1)+"index1"));
 					//I should rework the following line...
 					localStorage.setItem("$myCurrentBalance", sum-localStorage.getItem("$line1index0")-localStorage.getItem("$line2index0")-localStorage.getItem("$line3index0")-localStorage.getItem("$line4index0")-localStorage.getItem("$line5index0")-localStorage.getItem("$line6index0")-localStorage.getItem("$line7index0")-localStorage.getItem("$line8index0")-localStorage.getItem("$line9index0"));
@@ -27,7 +32,21 @@ if (localStorage.getItem("$userName") != null) {
 			}
 		});	
 	}
+	for (var i = 0; i < storedNames.length; i++) {
+		var grabCat = document.getElementById('category'+(i+1));
+		grabCat.addEventListener('change', function(event) {
+			for (var j = 0; j < storedNames.length; j++) {
+				if (document.getElementById('category'+(j+1)).value != "") {
+					localStorage.setItem(("$category"+(j+1)), document.getElementById('category'+(j+1)).value);
+					storedNames[j] = localStorage.getItem("$category"+(j+1))
+					localStorage.setItem('$allCategories', JSON.stringify(storedNames))
+					location.reload();
+				}
+			}
+		});	
+	}
 	
+	document.write("<p>"+storedNames[0]+"</p>");
 	document.write("<p id=\"addcategory\">Add Category</p><input id=\"categoryname\" style=\"width: 100px;height:15px;\">");
 	var grabAddCategory = document.getElementById('addcategory');
 	var grabValue = document.getElementById('categoryname');
@@ -37,13 +56,13 @@ if (localStorage.getItem("$userName") != null) {
 		localStorage.setItem("$line"+(storedNames.length+1)+"index0", 0);
 		localStorage.setItem("$line"+(storedNames.length+1)+"index1", 0);
 		localStorage.setItem("$line"+(storedNames.length+1)+"index2", 0);
-		//indexZero.push(localStorage.getItem("$line"+(storedNames.length+1)+"index0"));
-
+	
 		var newItem = localStorage.getItem("$category"+(storedNames.length+1));
 		storedNames.push(newItem);
 		localStorage.setItem('$allCategories', JSON.stringify(storedNames));
 		location.reload();	
 	})
+
 	document.write("<p><select id=\"newtranscategory\" style=\"width: 125px;height:25px;\"><option>Choose a Category</option><option>Deposit</option></select>  How much was spent/deposited?:  <input id=\"newtransamt\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype2\" style=\"width: 30px;height:15px;\"></p>");
 	var select = document.getElementById("newtranscategory"); 
 	for(var i = 0; i < storedNames.length; i++) {
