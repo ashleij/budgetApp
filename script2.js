@@ -2,6 +2,7 @@ if (localStorage.getItem("$userName") != null) {
 	var storedNames = JSON.parse(localStorage.getItem("$allCategories"));
 	var storedNumbers = JSON.parse(localStorage.getItem("$depositArray"));
 	var sum = storedNumbers.reduce(function(pv, cv) { return pv + cv; }, 0);
+	var indexZero = 0;
 	document.write("<table><tr><th>Category</th><th>Budgeted</th><th>Activity</th><th>Available</th></tr>");
 	
 	for (i = 0; i <= storedNames.length - 1; i++) {
@@ -16,8 +17,7 @@ if (localStorage.getItem("$userName") != null) {
 		document.getElementsByClassName('boxes2')[i].id = "category"+(i+1);
 	}
 	
-
-
+	document.write("<p>" + localStorage.getItem("$myCurrentBalance") + "</p>");
 	for (var i = 0; i < storedNames.length; i++) {
 		var grabBudg = document.getElementById('budgeted'+(i+1));
 		grabBudg.addEventListener('change', function(event) {
@@ -25,13 +25,18 @@ if (localStorage.getItem("$userName") != null) {
 				if (document.getElementById('budgeted'+(j+1)).value != "") {
 					localStorage.setItem(("$line"+(j+1)+"index0"), document.getElementById('budgeted'+(j+1)).value);
 					localStorage.setItem("$line"+(j+1)+"index2", localStorage.getItem("$line"+(j+1)+"index0")-localStorage.getItem("$line"+(j+1)+"index1"));
-					//I should rework the following line...
-					localStorage.setItem("$myCurrentBalance", sum-localStorage.getItem("$line1index0")-localStorage.getItem("$line2index0")-localStorage.getItem("$line3index0")-localStorage.getItem("$line4index0")-localStorage.getItem("$line5index0")-localStorage.getItem("$line6index0")-localStorage.getItem("$line7index0")-localStorage.getItem("$line8index0")-localStorage.getItem("$line9index0"));
+					
+					for (var x = 0; x < storedNames.length; x++) {
+						indexZero += parseInt(localStorage.getItem("$line"+(x+1)+"index0"));
+					}
+
+					localStorage.setItem("$myCurrentBalance", sum-indexZero);
 					location.reload();
 				}
 			}
 		});	
 	}
+
 	for (var i = 0; i < storedNames.length; i++) {
 		var grabCat = document.getElementById('category'+(i+1));
 		grabCat.addEventListener('change', function(event) {
@@ -87,6 +92,7 @@ if (localStorage.getItem("$userName") != null) {
 			localStorage.setItem("$myCurrentBalance", parseInt(localStorage.getItem("$myCurrentBalance"))+beANum);
 			location.reload();
 		}
+		
 		for (i = 0; i <= storedNames.length; i++) {
 			if (document.getElementById('newtranscategory').value == localStorage.getItem("$category"+(i+1))) {
 				localStorage.setItem("$line"+(i+1)+"index1", document.getElementById('newtransamt').value);
