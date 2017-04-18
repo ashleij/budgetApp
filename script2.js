@@ -4,9 +4,8 @@ if (localStorage.getItem("$userName") != null) {
 	var sum = storedNumbers.reduce(function(pv, cv) { return pv + cv; }, 0);
 	var indexZero = 0;
 	document.write("<table><tr><th>Category</th><th>Budgeted</th><th>Activity</th><th>Available</th></tr>");
-	
 	for (i = 0; i <= storedNames.length - 1; i++) {
-		document.write("<tr><td><input id=\"blah2\" class=\"boxes2\" placeholder=\"" + localStorage.getItem("$category"+(i+1)) + "\"></td><td><input id=\"blah\" placeholder=\"" + localStorage.getItem("$line"+(i+1)+ "index0") + "\" type=\"text\" class=\"boxes\" style=\"width: 45px;height: 18px;\"></td><td>" + localStorage.getItem("$line"+(i+1)+ "index1") + "</td><td>" + localStorage.getItem("$line"+(i+1)+ "index2") + "</td></tr>");
+		document.write("<tr id=\"blah3\" class=\"therows\"><td><img id=\"blah4\" class =\"deleteclass\" src=\"deletebutton.png\" style=\"width:15px;height:15px;\"><input id=\"blah2\" class=\"boxes2\" placeholder=\"" + localStorage.getItem("$category"+(i+1)) + "\"></td><td><input id=\"blah\" placeholder=\"" + localStorage.getItem("$line"+(i+1)+ "index0") + "\" type=\"text\" class=\"boxes\" style=\"width: 45px;height: 18px;\"></td><td>" + localStorage.getItem("$line"+(i+1)+ "index1") + "</td><td>" + localStorage.getItem("$line"+(i+1)+ "index2") + "</td></tr>");
 	}	
 	
 	for(var i = 0; i < storedNames.length; i++) {
@@ -16,8 +15,38 @@ if (localStorage.getItem("$userName") != null) {
 	for(var i = 0; i < storedNames.length; i++) {
 		document.getElementsByClassName('boxes2')[i].id = "category"+(i+1);
 	}
-	
-	document.write("<p>" + localStorage.getItem("$myCurrentBalance") + "</p>");
+
+	for(var i = 0; i < storedNames.length; i++) {
+		document.getElementsByClassName('therows')[i].id = "row"+(i+1);
+	}
+
+	for(var i = 0; i < storedNames.length; i++) {
+		document.getElementsByClassName('deleteclass')[i].id = "deletebutton"+(i+1);
+	}
+
+	for (var i = 0; i < storedNames.length; i++) {
+		var grabRow = document.getElementById('deletebutton'+(i+1));
+		grabRow.addEventListener('click', function(event) {
+			
+			if (confirm('Are you sure that you want to delete this category?')) {
+				alert("Create a function to delete a category...");
+				for (var j = 0; j < storedNames.length; j++) {
+				localStorage.removeItem("$category1");
+				localStorage.removeItem("$line"+(j+1)+"index0");
+				localStorage.removeItem("$line"+(j+1)+"index1");
+				localStorage.removeItem("$line"+(j+1)+"index2");
+				document.getElementById("row"+(j+1)).remove();
+				storedNames.splice((1-(j+1)), 1);
+				localStorage.setItem('$allCategories', JSON.stringify(storedNames));
+				location.reload();
+			}
+			} else {
+    			// Do nothing.
+			}
+		
+		});	
+	}
+
 	for (var i = 0; i < storedNames.length; i++) {
 		var grabBudg = document.getElementById('budgeted'+(i+1));
 		grabBudg.addEventListener('change', function(event) {
@@ -51,7 +80,6 @@ if (localStorage.getItem("$userName") != null) {
 		});	
 	}
 	
-	document.write("<p>"+storedNames[0]+"</p>");
 	document.write("<p id=\"addcategory\">Add Category</p><input id=\"categoryname\" style=\"width: 100px;height:15px;\">");
 	var grabAddCategory = document.getElementById('addcategory');
 	var grabValue = document.getElementById('categoryname');

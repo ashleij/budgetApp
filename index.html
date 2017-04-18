@@ -7,7 +7,7 @@
 
 	<body>
 		<p id="newuser">Start Over</p>
-		<p id="delet">BIG RED BUTTON</p>
+		<!-- <p id="delet">BIG RED BUTTON</p> -->
 		<script>
      		if (localStorage.getItem("$userName") != null) {
         	
@@ -25,8 +25,6 @@
 				}
 				var sum2 = budgetArray.reduce(function(pv, cv) { return pv + cv; }, 0);
 
-
-
         		function whichMessage(word) {
         			if (word < 0) {
         				return "Looks like your budget exceeds your income by $" + -localStorage.getItem("$myCurrentBalance")+ "! Are you going to make a deposit to cover your budget?";
@@ -40,8 +38,6 @@
         		}
 
         	document.write("<p>BUDGET STATUS: " + whichMessage(parseInt(localStorage.getItem("$myCurrentBalance"))) + "</p>");
-
-
 
        		}
        </script>
