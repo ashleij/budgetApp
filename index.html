@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	   <link rel="stylesheet" type="text/css" href="styles.css" />
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<p id="newuser">Start Over</p>
+		<p id="delet">BIG RED BUTTON</p>
+		<script>
+     		if (localStorage.getItem("$userName") != null) {
+        	
+        		document.write("<p>Welcome back, " + localStorage.getItem("$userName"));
+        		var currentBal = parseInt(localStorage.getItem("$myCurrentBalance"));
+        		
+        		var storedNames = JSON.parse(localStorage.getItem("$allCategories"));
+	
+        		var storedNumbers = JSON.parse(localStorage.getItem("$depositArray"));
+				var sum = storedNumbers.reduce(function(pv, cv) { return pv + cv; }, 0);
+				
+				var budgetArray = JSON.parse(localStorage.getItem("$budgetedArray"));
+				for (i = 0; i <= storedNames.length -1; i++) {
+		 		budgetArray.push(parseInt(localStorage.getItem("$line"+(i+1)+"index0")))
+				}
+				var sum2 = budgetArray.reduce(function(pv, cv) { return pv + cv; }, 0);
+
+
+
+        		function whichMessage(word) {
+        			if (word < 0) {
+        				return "Looks like your budget exceeds your income by $" + -localStorage.getItem("$myCurrentBalance")+ "! Are you going to make a deposit to cover your budget?";
+        			} else if (word == 0) {
+        				return "Your budget matches your income! Great job!";
+        			} else if (word > 0) {
+        				return "Hey, you still have $" + localStorage.getItem("$myCurrentBalance") +" that you need to budget! You've only budgeted $" + sum2 + " out of $" + sum + "!" + "";
+        			}else {
+        				return "\"fail\"";
+        			}
+        		}
+
+        	document.write("<p>BUDGET STATUS: " + whichMessage(parseInt(localStorage.getItem("$myCurrentBalance"))) + "</p>");
+
+
+
+       		}
+       </script>
+       <script src="script.js"></script>
+       <script src="script2.js"></script>
+	</body>
+</html>

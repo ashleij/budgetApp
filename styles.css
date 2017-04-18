@@ -1,0 +1,48 @@
+#newuser { 
+	font-family:arial, helvetica, sans-serif; 
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-decoration: none; 
+	display: inline-block;
+	text-shadow: -1px -1px 0 grey;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: normal; 
+	color: green;
+	background-color: white; 
+	width: 20%;
+	height: 10%;
+	font-size: 12px;
+}
+
+#delet { 
+	font-family:arial, helvetica, sans-serif; 
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-decoration: none; 
+	display: inline-block;
+	text-shadow: -1px -1px 0 grey;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: normal; 
+	color: red;
+	background-color: white; 
+	width: 20%;
+	height: 10%;
+	font-size: 12px;
+}
+
+#addcategory { 
+	font-family:arial, helvetica, sans-serif; 
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-decoration: none; 
+	display: inline-block;
+	text-shadow: -1px -1px 0 grey;
+	font-weight: normal; 
+	color: green;
+	background-color: white; 
+	padding-right: 5px;
+	height: 10%;
+	font-size: 12px;
+}
