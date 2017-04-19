@@ -5,13 +5,13 @@
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	</head>
 
-	<body>
+	<body><div id="indexpagecontentbuffer"><div id="indexpagecontent">
 		<p id="newuser">Start Over</p>
-		<p id="delet">Delete Everything</p>
+   <p id="delet">Delete Everything</p>
 		<script>
      		if (localStorage.getItem("$userName") != null) {
       
-        		document.write("<p>Welcome back, " + localStorage.getItem("$userName"));
+        		document.write("<p>Welcome back, " + localStorage.getItem("$userName") + "!");
         		var currentBal = parseInt(localStorage.getItem("$myCurrentBalance"));
         		
         		var storedNames = JSON.parse(localStorage.getItem("$allCategories"));
@@ -43,5 +43,6 @@
        </script>
        <script src="script.js"></script>
        <script src="script2.js"></script>
+       </div></div>
 	</body>
 </html>

@@ -8,10 +8,10 @@ if (localStorage.getItem("$userName") != null) {
 	var indexZero = 0;
 	var shiftRows = false;
 	var tokenNum = 0;
-	document.write("<table><tr><th>Category</th><th>Budgeted</th><th>Activity</th><th>Available</th></tr>");
+	document.write("<table id=\"chartheader\"><tr><th>Category</th><th>Budgeted</th><th>Activity</th><th>Available</th></tr>");
 
 	for (i = 0; i <= storedNames.length - 1; i++) {
-		document.write("<tr id=\"blah3\" class=\"therows\"><td><img id=\"blah4\" class =\"deleteclass\" src=\"deletebutton.png\" style=\"width:15px;height:15px;\"><input id=\"blah2\" class=\"boxes2\" placeholder=\"" + storedNames[i] + "\"></td><td><input id=\"blah\" placeholder=\"" + allIndexZero[i] + "\" type=\"text\" class=\"boxes\" style=\"width: 45px;height: 18px;\"></td><td>" + allIndexOne[i] + "</td><td>" + allIndexTwo[i] + "</td></tr>");
+		document.write("<tr id=\"blah3\" class=\"therows\"><td><img id=\"blah4\" class =\"deleteclass\" src=\"deletebutton.png\" style=\"width:15px;height:15px;\"><input id=\"blah2\" class=\"boxes2\" style=\"width:125px;height:18px;\" placeholder=\"" + storedNames[i] + "\"></td><td><input id=\"blah\" placeholder=\"" + allIndexZero[i] + "\" type=\"text\" class=\"boxes\" style=\"width: 45px;height: 18px;\"></td><td>" + allIndexOne[i] + "</td><td>" + allIndexTwo[i] + "</td></tr>");
 	}	
 	
 	for(var i = 0; i < storedNames.length; i++) {
@@ -91,7 +91,7 @@ if (localStorage.getItem("$userName") != null) {
 		});	
 	}
 	
-	document.write("<p id=\"addcategory\">Add Category</p><input id=\"categoryname\" style=\"width: 100px;height:15px;\">");
+	document.write("<input id=\"categoryname\" style=\"width: 100px;height:18px;\"><p id=\"addcategory\">&nbsp;&nbsp;ADD CATEGORY</p>");
 	var grabAddCategory = document.getElementById('addcategory');
 	var grabValue = document.getElementById('categoryname');
 
@@ -128,7 +128,7 @@ if (localStorage.getItem("$userName") != null) {
 	//**MVP doesnt have these features, so I've set them to "hidden".**//
 	document.getElementById("newtranstype").style.visibility = "hidden";
 	document.getElementById("newtranstype2").style.visibility = "hidden";	
-	document.write("Income: " + localStorage.getItem("$depositArray"));
+	document.write("Income: " + localStorage.getItem("$depositArray")+"<p></p>");
 	document.getElementById('newtransamt2').addEventListener('click', function(event) {
 
 		if (document.getElementById('newtranscategory').value == "Deposit") {

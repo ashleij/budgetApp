@@ -1,3 +1,32 @@
+body {
+	background-image: url("background.jpeg");
+	background-attachment: fixed;
+	color: maroon;
+	background-repeat: no-repeat;
+	font-family: Arial;
+	background-position: 50% 50%;
+}
+
+#indexpagecontentbuffer {
+	width: 500px;
+	height: 600px;
+	display: block;
+	margin: auto;
+	border-style: solid;
+	border-color: maroon;
+	overflow: hidden;
+}
+
+#indexpagecontent {
+	width: 500px;
+	height: 600px;
+	display: block;
+	margin: auto;
+
+	padding: 10px;
+	overflow-y: scroll;
+}
+
 #newuser { 
 	font-family:arial, helvetica, sans-serif; 
 	padding-top: 10px;
@@ -9,10 +38,9 @@
 	letter-spacing: 2px;
 	font-weight: normal; 
 	color: green;
-	background-color: white; 
-	width: 20%;
-	height: 10%;
 	font-size: 12px;
+	margin-right: 110px;
+
 }
 
 #delet { 
@@ -25,11 +53,10 @@
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-weight: normal; 
-	color: red;
-	background-color: white; 
-	width: 20%;
-	height: 10%;
+	color: red; 
 	font-size: 12px;
+	margin-left:110px;
+
 }
 
 #addcategory { 
@@ -40,9 +67,11 @@
 	display: inline-block;
 	text-shadow: -1px -1px 0 grey;
 	font-weight: normal; 
-	color: green;
-	background-color: white; 
-	padding-right: 5px;
-	height: 10%;
+	color: blue; 
 	font-size: 12px;
+}
+
+#chartheader {
+	color: green;
+	margin:auto;
 }
