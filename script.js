@@ -24,10 +24,10 @@ function userName() {
 	localStorage.clear();
 	var input = document.getElementById("userInput");
 	localStorage.setItem("$userName", input.value);
-	localStorage.setItem("$category1", "rent");
-	localStorage.setItem("$line1index0", 0);
-	localStorage.setItem("$line1index1", 0);
-	localStorage.setItem("$line1index2", 0);
+	//localStorage.setItem("$category1", "rent");
+	//localStorage.setItem("$line1index0", 0);
+	//localStorage.setItem("$line1index1", 0);
+	//localStorage.setItem("$line1index2", 0);
 	/*localStorage.setItem("$category2", "phone");
 	localStorage.setItem("$category3", "food");
 	localStorage.setItem("$category4", "internet");
@@ -62,12 +62,18 @@ function userName() {
 	localStorage.setItem("$line7index2", 0);*/
 
 	localStorage.setItem("$myCurrentBalance", 0);
-	var allCategories = [localStorage.getItem("$category1")];
+	var allCategories = [];
 	localStorage.setItem("$allCategories", JSON.stringify(allCategories));
 	var depositArray = [];
 	localStorage.setItem("$depositArray", JSON.stringify(depositArray));
 	var budgetedArray = [];
 	localStorage.setItem("$budgetedArray", JSON.stringify(budgetedArray));
+	var parseIndexZero = [];
+	localStorage.setItem("$blah0", JSON.stringify(parseIndexZero));
+	var parseIndexOne = [];
+	localStorage.setItem("$blah1", JSON.stringify(parseIndexOne));
+	var parseIndexTwo = [];
+	localStorage.setItem("$blah2", JSON.stringify(parseIndexTwo));
 	location.reload();	
 };
 

@@ -1,11 +1,18 @@
 if (localStorage.getItem("$userName") != null) {	
 	var storedNames = JSON.parse(localStorage.getItem("$allCategories"));
+	var allIndexZero = JSON.parse(localStorage.getItem("$blah0"));
+	var allIndexOne = JSON.parse(localStorage.getItem("$blah1"));
+	var allIndexTwo = JSON.parse(localStorage.getItem("$blah2"));
 	var storedNumbers = JSON.parse(localStorage.getItem("$depositArray"));
 	var sum = storedNumbers.reduce(function(pv, cv) { return pv + cv; }, 0);
 	var indexZero = 0;
+	var shiftRows = false;
+	var tokenNum = 0;
 	document.write("<table><tr><th>Category</th><th>Budgeted</th><th>Activity</th><th>Available</th></tr>");
+	
+
 	for (i = 0; i <= storedNames.length - 1; i++) {
-		document.write("<tr id=\"blah3\" class=\"therows\"><td><img id=\"blah4\" class =\"deleteclass\" src=\"deletebutton.png\" style=\"width:15px;height:15px;\"><input id=\"blah2\" class=\"boxes2\" placeholder=\"" + localStorage.getItem("$category"+(i+1)) + "\"></td><td><input id=\"blah\" placeholder=\"" + localStorage.getItem("$line"+(i+1)+ "index0") + "\" type=\"text\" class=\"boxes\" style=\"width: 45px;height: 18px;\"></td><td>" + localStorage.getItem("$line"+(i+1)+ "index1") + "</td><td>" + localStorage.getItem("$line"+(i+1)+ "index2") + "</td></tr>");
+		document.write("<tr id=\"blah3\" class=\"therows\"><td><img id=\"blah4\" class =\"deleteclass\" src=\"deletebutton.png\" style=\"width:15px;height:15px;\"><input id=\"blah2\" class=\"boxes2\" placeholder=\"" + storedNames[i] + "\"></td><td><input id=\"blah\" placeholder=\"" + allIndexZero[i] + "\" type=\"text\" class=\"boxes\" style=\"width: 45px;height: 18px;\"></td><td>" + allIndexOne[i] + "</td><td>" + allIndexTwo[i] + "</td></tr>");
 	}	
 	
 	for(var i = 0; i < storedNames.length; i++) {
@@ -24,29 +31,35 @@ if (localStorage.getItem("$userName") != null) {
 		document.getElementsByClassName('deleteclass')[i].id = "deletebutton"+(i+1);
 	}
 
+	var getIndex = function(token) {
+		return token.replace("deletebutton", "");
+	}
+	
 	for (var i = 0; i < storedNames.length; i++) {
-		var grabRow = document.getElementById('deletebutton'+(i+1));
-		grabRow.addEventListener('click', function(event) {
-			
-			if (confirm('Are you sure that you want to delete this category?')) {
-				alert("Create a function to delete a category...");
-				for (var j = 0; j < storedNames.length; j++) {
-				localStorage.removeItem("$category1");
-				localStorage.removeItem("$line"+(j+1)+"index0");
-				localStorage.removeItem("$line"+(j+1)+"index1");
-				localStorage.removeItem("$line"+(j+1)+"index2");
-				document.getElementById("row"+(j+1)).remove();
-				storedNames.splice((1-(j+1)), 1);
-				localStorage.setItem('$allCategories', JSON.stringify(storedNames));
-				location.reload();
-			}
-			} else {
-    			// Do nothing.
-			}
-		
-		});	
+
+		eval("var grabRow" + (i+1) +"= document.getElementById('deletebutton'+(i+1));");
+		eval("grabRow" + (i+1) + ".addEventListener('click', function(event) {if (confirm('Are you sure that you want to delete this category?')) { if (localStorage.getItem(\"$line"+(i+1)+"index0\") == 0) {localStorage.setItem('$shiftRows', true);storedNames.splice("+i+", 1);localStorage.setItem('$allCategories', JSON.stringify(storedNames));allIndexZero.splice("+i+", 1);localStorage.setItem('$blah0', JSON.stringify(allIndexZero));allIndexOne.splice("+i+", 1);localStorage.setItem('$blah1', JSON.stringify(allIndexOne));allIndexTwo.splice("+i+", 1);localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));localStorage.setItem('$tokenNum',"+(i+1)+");} else { alert(\"You must set the budgeted value to 0 before deleting a category.\")}} else {}location.reload()});");
+	
+		var toShift = localStorage.getItem("$shiftRows");	
+
 	}
 
+	if (toShift == "true") {
+		tokenNum = parseInt(localStorage.getItem('$tokenNum'));
+			for (var j = tokenNum; j < storedNames.length +1; j++) {
+				
+				localStorage.setItem("$category"+(j), localStorage.getItem("$category"+(j+1)));
+				localStorage.setItem("$line"+(j)+"index0", localStorage.getItem("$line"+(j+1)+"index0"));
+				localStorage.setItem("$line"+(j)+"index1", localStorage.getItem("$line"+(j+1)+"index1"));
+				localStorage.setItem("$line"+(j)+"index2", localStorage.getItem("$line"+(j+1)+"index2"));
+				
+		}			
+			toShift = "false";
+			localStorage.setItem("$shiftRows", toShift);
+			location.reload();
+		}	
+	
+		
 	for (var i = 0; i < storedNames.length; i++) {
 		var grabBudg = document.getElementById('budgeted'+(i+1));
 		grabBudg.addEventListener('change', function(event) {
@@ -58,8 +71,15 @@ if (localStorage.getItem("$userName") != null) {
 					for (var x = 0; x < storedNames.length; x++) {
 						indexZero += parseInt(localStorage.getItem("$line"+(x+1)+"index0"));
 					}
-
 					localStorage.setItem("$myCurrentBalance", sum-indexZero);
+					
+
+					allIndexZero[j] = [];
+					allIndexZero[j] = localStorage.getItem("$line"+(j+1)+"index0");
+					allIndexTwo[j] = [];
+					allIndexTwo[j] = localStorage.getItem("$line"+(j+1)+"index2");
+					localStorage.setItem('$blah0', JSON.stringify(allIndexZero));
+					localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));
 					location.reload();
 				}
 			}
@@ -72,6 +92,7 @@ if (localStorage.getItem("$userName") != null) {
 			for (var j = 0; j < storedNames.length; j++) {
 				if (document.getElementById('category'+(j+1)).value != "") {
 					localStorage.setItem(("$category"+(j+1)), document.getElementById('category'+(j+1)).value);
+					storedNames[j] = [];
 					storedNames[j] = localStorage.getItem("$category"+(j+1))
 					localStorage.setItem('$allCategories', JSON.stringify(storedNames))
 					location.reload();
@@ -91,8 +112,21 @@ if (localStorage.getItem("$userName") != null) {
 		localStorage.setItem("$line"+(storedNames.length+1)+"index2", 0);
 	
 		var newItem = localStorage.getItem("$category"+(storedNames.length+1));
+		var iZero = localStorage.getItem("$line"+(storedNames.length+1)+"index0");
+		var iOne = localStorage.getItem("$line"+(storedNames.length+1)+"index1");
+		var iTwo = localStorage.getItem("$line"+(storedNames.length+1)+"index2");
+
 		storedNames.push(newItem);
+		allIndexZero.push(iZero);
+		allIndexOne.push(iOne);
+		allIndexTwo.push(iTwo);
 		localStorage.setItem('$allCategories', JSON.stringify(storedNames));
+		localStorage.setItem('$blah0', JSON.stringify(allIndexZero));
+		localStorage.setItem('$blah1', JSON.stringify(allIndexOne));
+		localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));
+
+
+
 		location.reload();	
 	})
 
@@ -116,15 +150,28 @@ if (localStorage.getItem("$userName") != null) {
 			var beANum = parseInt(document.getElementById('newtransamt').value);
 
 			storedNumbers.push(beANum);
+
 			localStorage.setItem("$depositArray", JSON.stringify(storedNumbers))
 			localStorage.setItem("$myCurrentBalance", parseInt(localStorage.getItem("$myCurrentBalance"))+beANum);
+			
 			location.reload();
 		}
 		
 		for (i = 0; i <= storedNames.length; i++) {
 			if (document.getElementById('newtranscategory').value == localStorage.getItem("$category"+(i+1))) {
 				localStorage.setItem("$line"+(i+1)+"index1", document.getElementById('newtransamt').value);
-				localStorage.setItem("$line"+(i+1)+"index2", localStorage.getItem("$line"+(i+1)+"index0")-localStorage.getItem("$line"+(i+1)+"index1"));		
+				allIndexOne[i] = [];
+				allIndexOne[i] = localStorage.getItem("$line"+(i+1)+"index1");
+				localStorage.setItem('$blah1', JSON.stringify(allIndexOne));
+
+			
+				localStorage.setItem("$line"+(i+1)+"index2", localStorage.getItem("$line"+(i+1)+"index0")-localStorage.getItem("$line"+(i+1)+"index1"));
+			allIndexTwo[i] = [];
+			allIndexTwo[i] = localStorage.getItem("$line"+(i+1)+"index2");
+			localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));
+							
+
+
 				location.reload();
 			} 
 		}
