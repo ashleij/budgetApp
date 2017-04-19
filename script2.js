@@ -36,7 +36,7 @@ if (localStorage.getItem("$userName") != null) {
 	
 	for (var i = 0; i < storedNames.length; i++) {
 		eval("var grabRow" + (i+1) +"= document.getElementById('deletebutton'+(i+1));");
-		eval("grabRow" + (i+1) + ".addEventListener('click', function(event) {if (confirm('Are you sure that you want to delete this category?')) { if (localStorage.getItem(\"$line"+(i+1)+"index0\") == 0) {localStorage.setItem('$shiftRows', true);storedNames.splice("+i+", 1);localStorage.setItem('$allCategories', JSON.stringify(storedNames));allIndexZero.splice("+i+", 1);localStorage.setItem('$blah0', JSON.stringify(allIndexZero));allIndexOne.splice("+i+", 1);localStorage.setItem('$blah1', JSON.stringify(allIndexOne));allIndexTwo.splice("+i+", 1);localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));localStorage.setItem('$tokenNum',"+(i+1)+");} else { alert(\"You must set the budgeted value to 0 before deleting a category.\")}} else {}location.reload()});");	
+		eval("grabRow" + (i+1) + ".addEventListener('click', function(event) {if (localStorage.getItem(\"$line"+(i+1)+"index0\") == 0) { if (confirm('Are you sure that you want to delete this category?')) {localStorage.setItem('$shiftRows', true);storedNames.splice("+i+", 1);localStorage.setItem('$allCategories', JSON.stringify(storedNames));allIndexZero.splice("+i+", 1);localStorage.setItem('$blah0', JSON.stringify(allIndexZero));allIndexOne.splice("+i+", 1);localStorage.setItem('$blah1', JSON.stringify(allIndexOne));allIndexTwo.splice("+i+", 1);localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));localStorage.setItem('$tokenNum',"+(i+1)+");} else {}} else { alert(\"You must set the budgeted value to 0 before deleting a category.\")}location.reload()});");	
 		var toShift = localStorage.getItem("$shiftRows");	
 	}
 
@@ -115,7 +115,7 @@ if (localStorage.getItem("$userName") != null) {
 		location.reload();	
 	})
 
-	document.write("<p><select id=\"newtranscategory\" style=\"width: 125px;height:25px;\"><option>Choose a Category</option><option>Deposit</option></select>  How much was spent/deposited?:  <input id=\"newtransamt\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype2\" style=\"width: 30px;height:15px;\"></p>");
+	document.write("<p><select id=\"newtranscategory\" style=\"width: 125px;height:25px;\"><option>Choose a Category</option><option>Deposit</option></select>  How much was spent/deposited?:     <input id=\"newtransamt\" style=\"width: 30px;height:15px;\">&nbsp;<input type=\"submit\" id=\"newtransamt2\"><input id=\"newtranstype\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype2\" style=\"width: 30px;height:15px;\"></p>");
 	var select = document.getElementById("newtranscategory"); 
 	
 	for(var i = 0; i < storedNames.length; i++) {
@@ -129,7 +129,8 @@ if (localStorage.getItem("$userName") != null) {
 	document.getElementById("newtranstype").style.visibility = "hidden";
 	document.getElementById("newtranstype2").style.visibility = "hidden";	
 	document.write("Income: " + localStorage.getItem("$depositArray"));
-	document.getElementById('newtransamt').addEventListener('change', function(event) {
+	document.getElementById('newtransamt2').addEventListener('click', function(event) {
+
 		if (document.getElementById('newtranscategory').value == "Deposit") {
 			var beANum = parseInt(document.getElementById('newtransamt').value);
 			storedNumbers.push(beANum);
