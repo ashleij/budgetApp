@@ -9,7 +9,6 @@ if (localStorage.getItem("$userName") != null) {
 	var shiftRows = false;
 	var tokenNum = 0;
 	document.write("<table><tr><th>Category</th><th>Budgeted</th><th>Activity</th><th>Available</th></tr>");
-	
 
 	for (i = 0; i <= storedNames.length - 1; i++) {
 		document.write("<tr id=\"blah3\" class=\"therows\"><td><img id=\"blah4\" class =\"deleteclass\" src=\"deletebutton.png\" style=\"width:15px;height:15px;\"><input id=\"blah2\" class=\"boxes2\" placeholder=\"" + storedNames[i] + "\"></td><td><input id=\"blah\" placeholder=\"" + allIndexZero[i] + "\" type=\"text\" class=\"boxes\" style=\"width: 45px;height: 18px;\"></td><td>" + allIndexOne[i] + "</td><td>" + allIndexTwo[i] + "</td></tr>");
@@ -36,29 +35,23 @@ if (localStorage.getItem("$userName") != null) {
 	}
 	
 	for (var i = 0; i < storedNames.length; i++) {
-
 		eval("var grabRow" + (i+1) +"= document.getElementById('deletebutton'+(i+1));");
-		eval("grabRow" + (i+1) + ".addEventListener('click', function(event) {if (confirm('Are you sure that you want to delete this category?')) { if (localStorage.getItem(\"$line"+(i+1)+"index0\") == 0) {localStorage.setItem('$shiftRows', true);storedNames.splice("+i+", 1);localStorage.setItem('$allCategories', JSON.stringify(storedNames));allIndexZero.splice("+i+", 1);localStorage.setItem('$blah0', JSON.stringify(allIndexZero));allIndexOne.splice("+i+", 1);localStorage.setItem('$blah1', JSON.stringify(allIndexOne));allIndexTwo.splice("+i+", 1);localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));localStorage.setItem('$tokenNum',"+(i+1)+");} else { alert(\"You must set the budgeted value to 0 before deleting a category.\")}} else {}location.reload()});");
-	
+		eval("grabRow" + (i+1) + ".addEventListener('click', function(event) {if (confirm('Are you sure that you want to delete this category?')) { if (localStorage.getItem(\"$line"+(i+1)+"index0\") == 0) {localStorage.setItem('$shiftRows', true);storedNames.splice("+i+", 1);localStorage.setItem('$allCategories', JSON.stringify(storedNames));allIndexZero.splice("+i+", 1);localStorage.setItem('$blah0', JSON.stringify(allIndexZero));allIndexOne.splice("+i+", 1);localStorage.setItem('$blah1', JSON.stringify(allIndexOne));allIndexTwo.splice("+i+", 1);localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));localStorage.setItem('$tokenNum',"+(i+1)+");} else { alert(\"You must set the budgeted value to 0 before deleting a category.\")}} else {}location.reload()});");	
 		var toShift = localStorage.getItem("$shiftRows");	
-
 	}
 
 	if (toShift == "true") {
 		tokenNum = parseInt(localStorage.getItem('$tokenNum'));
-			for (var j = tokenNum; j < storedNames.length +1; j++) {
-				
-				localStorage.setItem("$category"+(j), localStorage.getItem("$category"+(j+1)));
-				localStorage.setItem("$line"+(j)+"index0", localStorage.getItem("$line"+(j+1)+"index0"));
-				localStorage.setItem("$line"+(j)+"index1", localStorage.getItem("$line"+(j+1)+"index1"));
-				localStorage.setItem("$line"+(j)+"index2", localStorage.getItem("$line"+(j+1)+"index2"));
-				
+		for (var j = tokenNum; j < storedNames.length +1; j++) {	
+			localStorage.setItem("$category"+(j), localStorage.getItem("$category"+(j+1)));
+			localStorage.setItem("$line"+(j)+"index0", localStorage.getItem("$line"+(j+1)+"index0"));
+			localStorage.setItem("$line"+(j)+"index1", localStorage.getItem("$line"+(j+1)+"index1"));
+			localStorage.setItem("$line"+(j)+"index2", localStorage.getItem("$line"+(j+1)+"index2"));	
 		}			
-			toShift = "false";
-			localStorage.setItem("$shiftRows", toShift);
-			location.reload();
-		}	
-	
+		toShift = "false";
+		localStorage.setItem("$shiftRows", toShift);
+		location.reload();
+	}	
 		
 	for (var i = 0; i < storedNames.length; i++) {
 		var grabBudg = document.getElementById('budgeted'+(i+1));
@@ -66,14 +59,11 @@ if (localStorage.getItem("$userName") != null) {
 			for (var j = 0; j < storedNames.length; j++) {
 				if (document.getElementById('budgeted'+(j+1)).value != "") {
 					localStorage.setItem(("$line"+(j+1)+"index0"), document.getElementById('budgeted'+(j+1)).value);
-					localStorage.setItem("$line"+(j+1)+"index2", localStorage.getItem("$line"+(j+1)+"index0")-localStorage.getItem("$line"+(j+1)+"index1"));
-					
+					localStorage.setItem("$line"+(j+1)+"index2", localStorage.getItem("$line"+(j+1)+"index0")-localStorage.getItem("$line"+(j+1)+"index1"));	
 					for (var x = 0; x < storedNames.length; x++) {
 						indexZero += parseInt(localStorage.getItem("$line"+(x+1)+"index0"));
 					}
 					localStorage.setItem("$myCurrentBalance", sum-indexZero);
-					
-
 					allIndexZero[j] = [];
 					allIndexZero[j] = localStorage.getItem("$line"+(j+1)+"index0");
 					allIndexTwo[j] = [];
@@ -110,12 +100,10 @@ if (localStorage.getItem("$userName") != null) {
 		localStorage.setItem("$line"+(storedNames.length+1)+"index0", 0);
 		localStorage.setItem("$line"+(storedNames.length+1)+"index1", 0);
 		localStorage.setItem("$line"+(storedNames.length+1)+"index2", 0);
-	
 		var newItem = localStorage.getItem("$category"+(storedNames.length+1));
 		var iZero = localStorage.getItem("$line"+(storedNames.length+1)+"index0");
 		var iOne = localStorage.getItem("$line"+(storedNames.length+1)+"index1");
 		var iTwo = localStorage.getItem("$line"+(storedNames.length+1)+"index2");
-
 		storedNames.push(newItem);
 		allIndexZero.push(iZero);
 		allIndexOne.push(iOne);
@@ -124,14 +112,12 @@ if (localStorage.getItem("$userName") != null) {
 		localStorage.setItem('$blah0', JSON.stringify(allIndexZero));
 		localStorage.setItem('$blah1', JSON.stringify(allIndexOne));
 		localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));
-
-
-
 		location.reload();	
 	})
 
 	document.write("<p><select id=\"newtranscategory\" style=\"width: 125px;height:25px;\"><option>Choose a Category</option><option>Deposit</option></select>  How much was spent/deposited?:  <input id=\"newtransamt\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype2\" style=\"width: 30px;height:15px;\"></p>");
 	var select = document.getElementById("newtranscategory"); 
+	
 	for(var i = 0; i < storedNames.length; i++) {
 		var opt = storedNames[i];
 		var el = document.createElement("option");
@@ -141,40 +127,28 @@ if (localStorage.getItem("$userName") != null) {
 	}
 	//**MVP doesnt have these features, so I've set them to "hidden".**//
 	document.getElementById("newtranstype").style.visibility = "hidden";
-	document.getElementById("newtranstype2").style.visibility = "hidden";
-	
+	document.getElementById("newtranstype2").style.visibility = "hidden";	
 	document.write("Income: " + localStorage.getItem("$depositArray"));
 	document.getElementById('newtransamt').addEventListener('change', function(event) {
-
 		if (document.getElementById('newtranscategory').value == "Deposit") {
 			var beANum = parseInt(document.getElementById('newtransamt').value);
-
 			storedNumbers.push(beANum);
-
 			localStorage.setItem("$depositArray", JSON.stringify(storedNumbers))
-			localStorage.setItem("$myCurrentBalance", parseInt(localStorage.getItem("$myCurrentBalance"))+beANum);
-			
+			localStorage.setItem("$myCurrentBalance", parseInt(localStorage.getItem("$myCurrentBalance"))+beANum);	
 			location.reload();
-		}
-		
+		}				
 		for (i = 0; i <= storedNames.length; i++) {
 			if (document.getElementById('newtranscategory').value == localStorage.getItem("$category"+(i+1))) {
 				localStorage.setItem("$line"+(i+1)+"index1", document.getElementById('newtransamt').value);
 				allIndexOne[i] = [];
 				allIndexOne[i] = localStorage.getItem("$line"+(i+1)+"index1");
 				localStorage.setItem('$blah1', JSON.stringify(allIndexOne));
-
-			
 				localStorage.setItem("$line"+(i+1)+"index2", localStorage.getItem("$line"+(i+1)+"index0")-localStorage.getItem("$line"+(i+1)+"index1"));
-			allIndexTwo[i] = [];
-			allIndexTwo[i] = localStorage.getItem("$line"+(i+1)+"index2");
-			localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));
-							
-
-
+				allIndexTwo[i] = [];
+				allIndexTwo[i] = localStorage.getItem("$line"+(i+1)+"index2");
+				localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));
 				location.reload();
 			} 
 		}
-
 	});	
 };
