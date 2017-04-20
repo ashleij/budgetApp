@@ -7,19 +7,73 @@ body {
 }
 
 #indexpagecontentbuffer {
-	width: 550px;
+	width: 545px;
 	height: 600px;
 	display: block;
 	margin: auto;
 	border-style: solid;
-	border-color: darkgreen;
+	border-color: slategrey;
 	overflow: hidden;
-	padding-bottom:30px;
+	padding-bottom:10px;
 	margin-top:50px;
+	background: rgba(0, 0, 0, 0.1);
+
 }
 
+.inputboxes {
+	background:rgba(0,0,0,0.2);
+    border:none;
+
+    height: 25px;
+}
+
+#newtransamt {
+	width:45px;
+}
+#categoryname {
+	width:90px;
+}
+#adddiv{
+padding-left: 123px;
+}
+
+
+.boxes {
+	background:rgba(0,0,0,0.2);
+    border:none;
+    margin-left: 15px;
+    width:45px;
+    height: 25px;
+    text-align: center;
+}
+
+.boxes2 {
+	background:rgba(0,0,0,0.2);
+    border:none;
+    width:90px;
+    height: 25px;
+    text-align: center;
+
+}
+
+.deleteclass {
+	margin-right: 10px;
+}
+
+.otherboxes {
+	margin-left: 10px;
+	color: black;
+	text-align: center;
+}
+
+::-webkit-input-placeholder { 
+	color: black;
+	font-family: 'Poppins';
+}
+
+
 #indexpagecontent {
-	width: 550px;
+	width: 545px;
 	height: 600px;
 	display: block;
 	margin: auto;
@@ -27,6 +81,8 @@ body {
 	overflow-y: scroll;
 	text-orientation: center;
 	padding-left:22px;
+	background: rgba(0, 0, 0, 0.1);
+
 }
 
 #newuser { 
@@ -40,7 +96,6 @@ body {
 	font-weight: normal; 
 	color: darkgreen;
 	font-size: 12px;
-	margin-right: 110px;
 
 }
 
@@ -55,8 +110,7 @@ body {
 	font-weight: normal; 
 	color: darkred; 
 	font-size: 12px;
-	margin-left:120px;
-
+	margin-left: 263px;
 }
 
 #addcategory { 
@@ -64,9 +118,9 @@ body {
 	padding-bottom: 0px;
 	text-decoration: none; 
 	display: inline-block;
-	text-shadow: -1px -1px 0 grey;
+	text-shadow: -1px -1px 0 black;
 	font-weight: normal; 
-	color: blue;
+	color: slategrey;
 	letter-spacing: 2px;
 	font-size: 12px;
 }
@@ -76,14 +130,18 @@ body {
 	padding-bottom: 0px;
 	text-decoration: none; 
 	display: inline-block;
-	text-shadow: -1px -1px 0 grey;
+	text-shadow: -1px -1px 0 black;
 	font-weight: normal; 
-	color: blue;
+	color: slategrey;
 	letter-spacing: 2px;
 	font-size: 12px;
 }
 
+#budgetstatus { 
+	margin-right: 13px;
+}
+
 #chartheader {
-	color: green;
-	margin:auto;
+	color: black;
+	margin: auto;
 }

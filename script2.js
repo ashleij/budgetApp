@@ -11,8 +11,11 @@ if (localStorage.getItem("$userName") != null) {
 	document.write("<table id=\"chartheader\"><tr><th>Category</th><th>Budgeted</th><th>Activity</th><th>Available</th></tr>");
 
 	for (i = 0; i <= storedNames.length - 1; i++) {
-		document.write("<tr id=\"blah3\" class=\"therows\"><td><img id=\"blah4\" class =\"deleteclass\" src=\"deletebutton.png\" style=\"width:15px;height:15px;\"><input id=\"blah2\" class=\"boxes2\" style=\"width:125px;height:18px;\" placeholder=\"" + storedNames[i] + "\"></td><td><input id=\"blah\" placeholder=\"" + allIndexZero[i] + "\" type=\"text\" class=\"boxes\" style=\"width: 45px;height: 18px;\"></td><td>" + allIndexOne[i] + "</td><td>" + allIndexTwo[i] + "</td></tr>");
+		document.write("<tr id=\"blah3\" class=\"therows\"><td><img id=\"blah4\" class=\"deleteclass\" src=\"deletebutton.png\" style=\"width:15px;height:15px;\"><input id=\"blah2\" class=\"boxes2\" placeholder=\"" + storedNames[i] + "\"></td><td><input id=\"blah\" placeholder=\"" + allIndexZero[i] + "\" type=\"text\" class=\"boxes\"></td><td class=\"otherboxes\">" + allIndexOne[i] + "</td><td class=\"otherboxes\">" + allIndexTwo[i] + "</td></tr>");
 	}	
+		
+	document.write("Income Log: " + localStorage.getItem("$depositArray")+"<p></p>");
+	document.write("<tr><p><select id=\"newtranscategory\" style=\"width: 125px;height:25px;\"><option>Choose a Category</option><option>Deposit</option></select>  How much was spent/deposited?:     <input id=\"newtransamt\" class=\"inputboxes\">&nbsp;<span id=\"newtransamt2\">SUBMIT</span><input id=\"newtranstype\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype2\" style=\"width: 30px;height:15px;\"></p></tr></table>");
 	
 	for(var i = 0; i < storedNames.length; i++) {
 		document.getElementsByClassName('boxes')[i].id = "budgeted"+(i+1);
@@ -91,7 +94,7 @@ if (localStorage.getItem("$userName") != null) {
 		});	
 	}
 	
-	document.write("<input id=\"categoryname\" style=\"width: 100px;height:18px;\"><p id=\"addcategory\">&nbsp;&nbsp;ADD CATEGORY</p>");
+	document.write("<div id=\"adddiv\"><input id=\"categoryname\" class=\"inputboxes\"><p id=\"addcategory\">&nbsp;&nbsp;ADD CATEGORY</p></div>");
 	var grabAddCategory = document.getElementById('addcategory');
 	var grabValue = document.getElementById('categoryname');
 
@@ -115,7 +118,7 @@ if (localStorage.getItem("$userName") != null) {
 		location.reload();	
 	})
 
-	document.write("<p><select id=\"newtranscategory\" style=\"width: 125px;height:25px;\"><option>Choose a Category</option><option>Deposit</option></select>  How much was spent/deposited?:     <input id=\"newtransamt\" style=\"width: 30px;height:15px;\">&nbsp;<span id=\"newtransamt2\">SUBMIT</span><input id=\"newtranstype\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype2\" style=\"width: 30px;height:15px;\"></p>");
+	//document.write("<p><select id=\"newtranscategory\" style=\"width: 125px;height:25px;\"><option>Choose a Category</option><option>Deposit</option></select>  How much was spent/deposited?:     <input id=\"newtransamt\" class=\"inputboxes\">&nbsp;<span id=\"newtransamt2\">SUBMIT</span><input id=\"newtranstype\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype2\" style=\"width: 30px;height:15px;\"></p>");
 	var select = document.getElementById("newtranscategory"); 
 	
 	for(var i = 0; i < storedNames.length; i++) {
@@ -128,7 +131,7 @@ if (localStorage.getItem("$userName") != null) {
 	//**MVP doesnt have these features, so I've set them to "hidden".**//
 	document.getElementById("newtranstype").style.visibility = "hidden";
 	document.getElementById("newtranstype2").style.visibility = "hidden";	
-	document.write("Income: " + localStorage.getItem("$depositArray")+"<p></p>");
+	//document.write("Income: " + localStorage.getItem("$depositArray")+"<p></p>");
 	document.getElementById('newtransamt2').addEventListener('click', function(event) {
 
 		if (document.getElementById('newtranscategory').value == "Deposit") {

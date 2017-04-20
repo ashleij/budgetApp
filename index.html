@@ -3,7 +3,7 @@
 	<head>
 	   <link rel="stylesheet" type="text/css" href="styles.css" />
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 	</head>
 
 	<body><div id="indexpagecontentbuffer"><div id="indexpagecontent">
@@ -30,20 +30,22 @@
         		function whichMessage(word) {
         			if (word < 0) {
                 document.body.style.backgroundImage = "url('bgpink.jpg')";
+                document.getElementById('indexpagecontentbuffer').style.borderColor = "#ff4d4d";
         				return "Looks like your budget exceeds your income by $" + -localStorage.getItem("$myCurrentBalance")+ "! Are you going to make a deposit to cover your budget?";
         			} else if (word == 0) {
                 document.body.style.backgroundImage = "url('bgwhite.jpg')";
                 return "Your budget matches your income! Great job!";
         			} else if (word > 0) {
                 document.body.style.backgroundImage = "url('bggreen.jpg')";
-        				return "Hey, you still have $" + localStorage.getItem("$myCurrentBalance") +" that you need to budget! You've only budgeted $" + sum2 + " out of $" + sum + "!" + "";
+        				document.getElementById('indexpagecontentbuffer').style.borderColor = "#0080ff";
+                return "Hey, you still have $" + localStorage.getItem("$myCurrentBalance") +" that you need to budget! You've only budgeted $" + sum2 + " out of $" + sum + "!" + "";
         			}else {
                 document.body.style.backgroundImage = "url('bgwhite.jpg')";
         				return "\"fail\"";
         			}
         		}
 
-        	document.write("<p>BUDGET STATUS: " + whichMessage(parseInt(localStorage.getItem("$myCurrentBalance"))) + "</p>");
+        	document.write("<p id=\"budgetstatus\">BUDGET STATUS: " + whichMessage(parseInt(localStorage.getItem("$myCurrentBalance"))) + "</p>");
 
        		}
        </script>
