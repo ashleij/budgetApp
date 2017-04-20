@@ -3,12 +3,14 @@
 	<head>
 	   <link rel="stylesheet" type="text/css" href="styles.css" />
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	</head>
 
 	<body><div id="indexpagecontentbuffer"><div id="indexpagecontent">
 		<p id="newuser">Start Over</p>
    <p id="delet">Delete Everything</p>
 		<script>
+    document.body.style.backgroundImage = "url('bgwhite.jpg')";
      		if (localStorage.getItem("$userName") != null) {
       
         		document.write("<p>Welcome back, " + localStorage.getItem("$userName") + "!");
@@ -27,12 +29,16 @@
 
         		function whichMessage(word) {
         			if (word < 0) {
+                document.body.style.backgroundImage = "url('bgpink.jpg')";
         				return "Looks like your budget exceeds your income by $" + -localStorage.getItem("$myCurrentBalance")+ "! Are you going to make a deposit to cover your budget?";
         			} else if (word == 0) {
-        				return "Your budget matches your income! Great job!";
+                document.body.style.backgroundImage = "url('bgwhite.jpg')";
+                return "Your budget matches your income! Great job!";
         			} else if (word > 0) {
+                document.body.style.backgroundImage = "url('bggreen.jpg')";
         				return "Hey, you still have $" + localStorage.getItem("$myCurrentBalance") +" that you need to budget! You've only budgeted $" + sum2 + " out of $" + sum + "!" + "";
         			}else {
+                document.body.style.backgroundImage = "url('bgwhite.jpg')";
         				return "\"fail\"";
         			}
         		}

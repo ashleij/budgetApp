@@ -115,7 +115,7 @@ if (localStorage.getItem("$userName") != null) {
 		location.reload();	
 	})
 
-	document.write("<p><select id=\"newtranscategory\" style=\"width: 125px;height:25px;\"><option>Choose a Category</option><option>Deposit</option></select>  How much was spent/deposited?:     <input id=\"newtransamt\" style=\"width: 30px;height:15px;\">&nbsp;<input type=\"submit\" id=\"newtransamt2\"><input id=\"newtranstype\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype2\" style=\"width: 30px;height:15px;\"></p>");
+	document.write("<p><select id=\"newtranscategory\" style=\"width: 125px;height:25px;\"><option>Choose a Category</option><option>Deposit</option></select>  How much was spent/deposited?:     <input id=\"newtransamt\" style=\"width: 30px;height:15px;\">&nbsp;<span id=\"newtransamt2\">SUBMIT</span><input id=\"newtranstype\" style=\"width: 30px;height:15px;\"><input id=\"newtranstype2\" style=\"width: 30px;height:15px;\"></p>");
 	var select = document.getElementById("newtranscategory"); 
 	
 	for(var i = 0; i < storedNames.length; i++) {

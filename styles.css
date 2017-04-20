@@ -1,73 +1,85 @@
 body {
-	background-image: url("background.jpeg");
+	background-image: url("");
 	background-attachment: fixed;
-	color: maroon;
+	font-family:"Poppins", sans-serif; 
 	background-repeat: no-repeat;
-	font-family: Arial;
 	background-position: 50% 50%;
 }
 
 #indexpagecontentbuffer {
-	width: 500px;
+	width: 550px;
 	height: 600px;
 	display: block;
 	margin: auto;
 	border-style: solid;
-	border-color: maroon;
+	border-color: darkgreen;
 	overflow: hidden;
+	padding-bottom:30px;
+	margin-top:50px;
 }
 
 #indexpagecontent {
-	width: 500px;
+	width: 550px;
 	height: 600px;
 	display: block;
 	margin: auto;
-
 	padding: 10px;
 	overflow-y: scroll;
+	text-orientation: center;
+	padding-left:22px;
 }
 
 #newuser { 
-	font-family:arial, helvetica, sans-serif; 
 	padding-top: 10px;
 	padding-bottom: 10px;
 	text-decoration: none; 
 	display: inline-block;
-	text-shadow: -1px -1px 0 grey;
+	text-shadow: -1px -1px 0 darkgreen;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-weight: normal; 
-	color: green;
+	color: darkgreen;
 	font-size: 12px;
 	margin-right: 110px;
 
 }
 
 #delet { 
-	font-family:arial, helvetica, sans-serif; 
 	padding-top: 10px;
 	padding-bottom: 10px;
 	text-decoration: none; 
 	display: inline-block;
-	text-shadow: -1px -1px 0 grey;
+	text-shadow: -1px -1px 0 darkred;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-weight: normal; 
-	color: red; 
+	color: darkred; 
 	font-size: 12px;
-	margin-left:110px;
+	margin-left:120px;
 
 }
 
 #addcategory { 
-	font-family:arial, helvetica, sans-serif; 
 	padding-top: 0px;
 	padding-bottom: 0px;
 	text-decoration: none; 
 	display: inline-block;
 	text-shadow: -1px -1px 0 grey;
 	font-weight: normal; 
-	color: blue; 
+	color: blue;
+	letter-spacing: 2px;
+	font-size: 12px;
+}
+
+#newtransamt2 { 
+	padding-top: 0px;
+	padding-bottom: 0px;
+	text-decoration: none; 
+	display: inline-block;
+	text-shadow: -1px -1px 0 grey;
+	font-weight: normal; 
+	color: blue;
+	letter-spacing: 2px;
 	font-size: 12px;
 }
 
