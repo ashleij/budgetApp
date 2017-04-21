@@ -1,4 +1,12 @@
-if (localStorage.getItem("$userName") != null) {	
+if (localStorage.getItem("$userName") != null) {
+	var sleep = function(milliseconds) {
+    	var start = new Date().getTime();
+    	for (var i = 0; i < 1e7; i++) {
+			if ((new Date().getTime() - start) > milliseconds) {
+				break;
+			}
+    	}
+	};
 	var storedNames = JSON.parse(localStorage.getItem("$allCategories"));
 	var allIndexZero = JSON.parse(localStorage.getItem("$blah0"));
 	var allIndexOne = JSON.parse(localStorage.getItem("$blah1"));
@@ -39,7 +47,7 @@ if (localStorage.getItem("$userName") != null) {
 	
 	for (var i = 0; i < storedNames.length; i++) {
 		eval("var grabRow" + (i+1) +"= document.getElementById('deletebutton'+(i+1));");
-		eval("grabRow" + (i+1) + ".addEventListener('click', function(event) {if (localStorage.getItem(\"$line"+(i+1)+"index0\") == 0) { if (confirm('Are you sure that you want to delete this category?')) {localStorage.setItem('$shiftRows', true);storedNames.splice("+i+", 1);localStorage.setItem('$allCategories', JSON.stringify(storedNames));allIndexZero.splice("+i+", 1);localStorage.setItem('$blah0', JSON.stringify(allIndexZero));allIndexOne.splice("+i+", 1);localStorage.setItem('$blah1', JSON.stringify(allIndexOne));allIndexTwo.splice("+i+", 1);localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));localStorage.setItem('$tokenNum',"+(i+1)+");} else {}} else { alert(\"You must set the budgeted value to 0 before deleting a category.\")}location.reload()});");	
+		eval("grabRow" + (i+1) + ".addEventListener('click', function(event) {if (localStorage.getItem(\"$line"+(i+1)+"index0\") == 0) { if (confirm('Are you sure that you want to delete this category?')) {localStorage.setItem('$shiftRows', true);storedNames.splice("+i+", 1);localStorage.setItem('$allCategories', JSON.stringify(storedNames));allIndexZero.splice("+i+", 1);localStorage.setItem('$blah0', JSON.stringify(allIndexZero));allIndexOne.splice("+i+", 1);localStorage.setItem('$blah1', JSON.stringify(allIndexOne));allIndexTwo.splice("+i+", 1);localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));localStorage.setItem('$tokenNum',"+(i+1)+");} else {}} else { alert(\"You must set the budgeted value to 0 before deleting a category.\")}sleep(300);location.reload()});");	
 		var toShift = localStorage.getItem("$shiftRows");	
 	}
 
@@ -53,6 +61,7 @@ if (localStorage.getItem("$userName") != null) {
 		}			
 		toShift = "false";
 		localStorage.setItem("$shiftRows", toShift);
+		sleep(300);
 		location.reload();
 	}	
 		
@@ -73,6 +82,7 @@ if (localStorage.getItem("$userName") != null) {
 					allIndexTwo[j] = localStorage.getItem("$line"+(j+1)+"index2");
 					localStorage.setItem('$blah0', JSON.stringify(allIndexZero));
 					localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));
+					sleep(300);
 					location.reload();
 				}
 			}
@@ -88,6 +98,7 @@ if (localStorage.getItem("$userName") != null) {
 					storedNames[j] = [];
 					storedNames[j] = localStorage.getItem("$category"+(j+1))
 					localStorage.setItem('$allCategories', JSON.stringify(storedNames))
+					sleep(300);
 					location.reload();
 				}
 			}
@@ -115,6 +126,7 @@ if (localStorage.getItem("$userName") != null) {
 		localStorage.setItem('$blah0', JSON.stringify(allIndexZero));
 		localStorage.setItem('$blah1', JSON.stringify(allIndexOne));
 		localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));
+		sleep(300);					
 		location.reload();	
 	})
 
@@ -139,6 +151,7 @@ if (localStorage.getItem("$userName") != null) {
 			storedNumbers.push(beANum);
 			localStorage.setItem("$depositArray", JSON.stringify(storedNumbers))
 			localStorage.setItem("$myCurrentBalance", parseInt(localStorage.getItem("$myCurrentBalance"))+beANum);	
+			sleep(300);
 			location.reload();
 		}				
 		for (i = 0; i <= storedNames.length; i++) {
@@ -151,6 +164,7 @@ if (localStorage.getItem("$userName") != null) {
 				allIndexTwo[i] = [];
 				allIndexTwo[i] = localStorage.getItem("$line"+(i+1)+"index2");
 				localStorage.setItem('$blah2', JSON.stringify(allIndexTwo));
+				sleep(300);
 				location.reload();
 			} 
 		}

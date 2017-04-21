@@ -33,10 +33,10 @@ body {
 #categoryname {
 	width:90px;
 }
+
 #adddiv{
 padding-left: 123px;
 }
-
 
 .boxes {
 	background:rgba(0,0,0,0.2);
@@ -139,6 +139,7 @@ padding-left: 123px;
 
 #budgetstatus { 
 	margin-right: 13px;
+	padding-right: 10px;
 }
 
 #chartheader {
